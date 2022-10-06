@@ -2,7 +2,6 @@ package categories;
 
 public class Proverbs extends Words{
 
-
     public Proverbs() {
         setWordBank();
         chooseRandomPhrase();

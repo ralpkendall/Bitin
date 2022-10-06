@@ -1,6 +1,6 @@
 import categories.Words;
 
-public class GameChecker {
+public class GameChecker{
 
     private final String[] HANGMAN = {
         "+---+\n" +
@@ -61,7 +61,7 @@ public class GameChecker {
         String phrase = word.getPhrase();
         String underscoredPhrase = "";
         for (int i = 0; i < phrase.length();i++) {
-            char letter = phrase.charAt(i);
+            char letter = phrase.charAt(i);//Robin Padilla || letter =
             if(letter >= 65 && letter <= 90) {
                 underscoredPhrase += "_";
             } else if(letter == 32) {

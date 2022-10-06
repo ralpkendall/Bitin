@@ -26,8 +26,6 @@ public class Game {
     }
 
     private String inputPlayerName(){
-        System.out.println("Hello, Laurence");
-
         System.out.println("Ano ang iyong ngalan, kapatid?");
         String playerName = scanner.nextLine();
 
@@ -41,8 +39,23 @@ public class Game {
         for(int i = 0;i < wordsFactory.CATEGORY_LIST.length;i++) {
             System.out.println((i + 1) +".) "  + wordsFactory.CATEGORY_LIST[i]);
         }
-        System.out.print("Pili ka ng kategorya na huhulaan: ");
-        int playerCategory = scanner.nextInt();scanner.nextLine();
+
+        int playerCategory;
+        while(true) {
+            try {
+                System.out.print("Pili ka ng kategorya na huhulaan: ");
+//                playerCategory = scanner.nextInt();scanner.nextLine();
+                playerCategory = Integer.parseInt(String.valueOf(scanner.nextLine().charAt(0)));
+                if(playerCategory >= 1 && playerCategory <= wordsFactory.CATEGORY_LIST.length) {
+                    break;
+                }else {
+                    throw new Exception();
+                }
+            }catch(Exception e) {
+                playerCategory = 0;
+                System.out.println("Pagkakamali: Hindi Wasto ang iyong Input\n");
+            }
+        }
 
         Words selectedWords = wordsFactory.getWord(playerCategory);
         String upperCasePhrase = selectedWords.getPhrase().toUpperCase();
