@@ -11,6 +11,7 @@ public class Game {
     public Game() {
         scanner = new Scanner(System.in);
 
+        System.out.println("Maligayang Pagdating sa Bitin: A Hangman Word Game!\n");
         Player player = createPlayer();
         Words words = selectPhraseCategory();
         gameChecker = new GameChecker(player, words);
@@ -25,7 +26,9 @@ public class Game {
     }
 
     private String inputPlayerName(){
-        System.out.println("Pangalan mo po?");
+        System.out.println("Hello, Laurence");
+
+        System.out.println("Ano ang iyong ngalan, kapatid?");
         String playerName = scanner.nextLine();
 
         return playerName;
@@ -33,11 +36,12 @@ public class Game {
 
     public Words selectPhraseCategory() {
         System.out.println("- - - - - - - - - -");
+        System.out.println("MGA KATEGORYA\n");
         WordsFactory wordsFactory = new WordsFactory();
         for(int i = 0;i < wordsFactory.CATEGORY_LIST.length;i++) {
             System.out.println((i + 1) +".) "  + wordsFactory.CATEGORY_LIST[i]);
         }
-        System.out.print("Pili ka ng ikamamatay mo: ");
+        System.out.print("Pili ka ng kategorya na huhulaan: ");
         int playerCategory = scanner.nextInt();scanner.nextLine();
 
         Words selectedWords = wordsFactory.getWord(playerCategory);
@@ -52,6 +56,7 @@ public class Game {
         while (!isGameOver){
             System.out.println("- - - - - - - - - -");
             gameChecker.printHangman();
+            System.out.println("\nHinuhulaang Mga Kataga: ");
             System.out.println(gameChecker.getHiddenPhrase() + "\n");
             System.out.print("Hula ka ng isang letra:");
             char inputGuess = scanner.next().charAt(0);scanner.nextLine();
@@ -71,13 +76,13 @@ public class Game {
 
         if(player.isHasWin()){
             System.out.println("Congrats, " + player.getName() + "!");
-            System.out.println("Talino mo talaga!");
-            System.out.println("Hinuhulaang Parirala: " + words.getPhrase());
+            System.out.println("Ang talino mo!");
+            System.out.println("Hinuhulaang Mga Kataga: " + words.getPhrase());
         } else{
             gameChecker.printHangman();
             System.out.println("Tapos ka na, " + player.getName() + ".");
-            System.out.println("Next time, pakigamit ang utak natin ahihi");
-            System.out.println("Hinuhulaang Parirala: " + words.getPhrase());
+            System.out.println("Aral tayo ulit, kapatid.");
+            System.out.println("Hinuhulaang Mga Kataga: " + words.getPhrase());
         }
     }
 
