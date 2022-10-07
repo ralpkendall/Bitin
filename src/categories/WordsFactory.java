@@ -1,7 +1,4 @@
 package categories;
-
-import java.util.ArrayList;
-
 public class WordsFactory {
 
     public final String[] CATEGORY_LIST = {
