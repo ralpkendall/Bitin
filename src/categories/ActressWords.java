@@ -22,7 +22,7 @@ public class ActressWords extends Words{
                 "Belle Mariano",
                 "Maja Salvador",
                 "Bea Alonzo",
-                "Kim Chiu",
+                "Kim Chiu"
         };
 
         super.setWordBank(wordBank);

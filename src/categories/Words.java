@@ -7,7 +7,7 @@ public abstract class Words {
     private String category;
 
     public void chooseRandomPhrase(){
-        int MAX = getWordBank().length - 1;
+        int MAX = wordBank.length - 1;
         int MIN = 0;
         int randomNum = (int) ((Math.random() * (MAX - MIN)) + 1);
 
@@ -36,7 +36,7 @@ public abstract class Words {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public static void setCategory(String category) {
+        category = category;
     }
 }

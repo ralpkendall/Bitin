@@ -22,7 +22,7 @@ public class ActorWords extends Words {
                 "Paulo Avelino",
                 "James Reid",
                 "Derek Ramsay",
-                "Carlo Aquino",
+                "Carlo Aquino"
         };
 
         super.setWordBank(wordBank);
