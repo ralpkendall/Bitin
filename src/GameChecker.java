@@ -70,10 +70,8 @@ public class GameChecker{
             char letter = phrase.charAt(i);//Robin Padilla || letter =
             if(letter >= 65 && letter <= 90) {
                 underscoredPhrase += "_";
-            } else if(letter == 32) {
-                underscoredPhrase += " ";
-            } else if(letter == 44) {
-                underscoredPhrase += ",";
+            } else {
+                underscoredPhrase += letter;
             }
         }
 

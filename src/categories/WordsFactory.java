@@ -9,10 +9,10 @@ public class WordsFactory {
 
     public Words getWord(int choiceNum) {
         if(choiceNum == 1){
-            return new Proverbs();
+            return new SayingsWords();
         }
         if(choiceNum == 2){
-            return new Actor();
+            return new ActorWords();
         }
 
         return null;
