@@ -44,7 +44,9 @@ public class Game {
         while(true) {
             try {
                 System.out.print("Pili ka ng kategorya na huhulaan: ");
-                playerCategory = Integer.parseInt(String.valueOf(scanner.nextLine().charAt(0)));
+                String playerCategoryRaw = scanner.nextLine();
+                playerCategory = Integer.parseInt(playerCategoryRaw);
+
                 if(playerCategory >= 1 && playerCategory <= wordsFactory.CATEGORY_LIST.length) {
                     break;
                 }else {
@@ -76,7 +78,7 @@ public class Game {
                 try {
                     System.out.print("Hula ka ng isang letra:");
                     String inputGuessRaw = scanner.nextLine();
-                    if(inputGuessRaw.length() != 1){
+                    if(inputGuessRaw.length() != 1) {
                         throw new Exception();
                     }
 
