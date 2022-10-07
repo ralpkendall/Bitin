@@ -1,5 +1,8 @@
 import categories.Words;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class GameChecker{
 
     private final String[] HANGMAN = {
@@ -45,11 +48,14 @@ public class GameChecker{
     private Words words;
     private String hiddenPhrase;
 
+    private ArrayList<Character> inputRecords;
+
     public GameChecker(Player player, Words words) {
         this.player = player;
         this.words = words;
 
         hiddenPhrase = convertPhraseToUnderscore(words);
+        inputRecords = new ArrayList<Character>();
     }
 
     public void printHangman() {
@@ -74,6 +80,12 @@ public class GameChecker{
         return underscoredPhrase;
     }
 
+    public void addInputRecords(char inputGuess) {
+        inputRecords.add(inputGuess);
+    }
+
+
+
     public void processGuess() {
         String phrase = words.getPhrase();
         char guess = player.getGuess();
@@ -92,6 +104,17 @@ public class GameChecker{
         if(!isGuessRight){
             player.setStrike(player.getStrike() + 1);
         }
+    }
+
+    public boolean hasAlreadyInputted(char inputGuess) {
+        boolean isAlreadyInputted = false;
+        for(int i = 0;i < inputRecords.size();i++){
+            if(inputGuess == inputRecords.get(i)){
+                isAlreadyInputted = true;
+            }
+        };
+
+        return isAlreadyInputted;
     }
 
     public boolean isGameOver() {
@@ -144,5 +167,21 @@ public class GameChecker{
 
     public void setHiddenPhrase(String hiddenPhrase) {
         this.hiddenPhrase = hiddenPhrase;
+    }
+
+    public String[] getHANGMAN() {
+        return HANGMAN;
+    }
+
+    public int getMAX_STRIKE() {
+        return MAX_STRIKE;
+    }
+
+    public ArrayList<Character> getInputRecords() {
+        return inputRecords;
+    }
+
+    public void setInputRecords(ArrayList<Character> inputRecords) {
+        this.inputRecords = inputRecords;
     }
 }

@@ -1,6 +1,8 @@
 import categories.Words;
 import categories.WordsFactory;
 
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
@@ -85,17 +87,23 @@ public class Game {
                     inputGuess = inputGuessRaw.charAt(0);
                     inputGuess = Character.toUpperCase(inputGuess);
                     if((inputGuess >= 65 && inputGuess <= 90) || (inputGuess >= 48 && inputGuess <= 57)) {
+                        if(gameChecker.hasAlreadyInputted(inputGuess)) {
+                            throw new InputMismatchException();
+                        }else{
+                            gameChecker.addInputRecords(inputGuess);
+                        }
                         break;
                     }else {
                         throw new Exception();
                     }
+                }catch(InputMismatchException e) {
+                    inputGuess = 0;
+                    System.out.println("Pagkakamali: Ang letra na iyan ay napili mo na\n");
                 }catch(Exception e) {
                     inputGuess = 0;
                     System.out.println("Pagkakamali: Hindi Wasto ang iyong Input\n");
                 }
             }
-
-
 
             gameChecker.getPlayer().setGuess(inputGuess);
             gameChecker.processGuess();
