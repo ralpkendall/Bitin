@@ -70,48 +70,54 @@ public class Game {
     public void start() {
 
         while (!isGameOver){
-            System.out.println("- - - - - - - - - -");
-            gameChecker.printHangman();
-            System.out.println("\nHinuhulaang Mga Kataga: ");
-            System.out.println(gameChecker.getHiddenPhrase() + "\n");
-
-            char inputGuess;
-            while(true) {
-                try {
-                    System.out.print("Hula ka ng isang letra:");
-                    String inputGuessRaw = scanner.nextLine();
-                    if(inputGuessRaw.length() != 1) {
-                        throw new Exception();
-                    }
-
-                    inputGuess = inputGuessRaw.charAt(0);
-                    inputGuess = Character.toUpperCase(inputGuess);
-                    if((inputGuess >= 65 && inputGuess <= 90) || (inputGuess >= 48 && inputGuess <= 57)) {
-                        if(gameChecker.hasAlreadyInputted(inputGuess)) {
-                            throw new InputMismatchException();
-                        }else{
-                            gameChecker.addInputRecords(inputGuess);
-                        }
-                        break;
-                    }else {
-                        throw new Exception();
-                    }
-                }catch(InputMismatchException e) {
-                    inputGuess = 0;
-                    System.out.println("Pagkakamali: Ang letra na iyan ay napili mo na\n");
-                }catch(Exception e) {
-                    inputGuess = 0;
-                    System.out.println("Pagkakamali: Hindi Wasto ang iyong Input\n");
-                }
-            }
-
-            gameChecker.getPlayer().setGuess(inputGuess);
+            printHangman();
+            inputPlayerGuess();
             gameChecker.processGuess();
             isGameOver = gameChecker.isGameOver();
         }
 
         showResults();
+    }
 
+    private void printHangman() {
+        System.out.println("- - - - - - - - - -");
+        gameChecker.printHangman();
+        System.out.println("\nHinuhulaang Mga Kataga: ");
+        System.out.println(gameChecker.getHiddenPhrase() + "\n");
+    }
+
+    public void inputPlayerGuess() {
+        char inputGuess;
+        while(true) {
+            try {
+                System.out.print("Hula ka ng isang letra:");
+                String inputGuessRaw = scanner.nextLine();
+                if(inputGuessRaw.length() != 1) {
+                    throw new Exception();
+                }
+
+                inputGuess = inputGuessRaw.charAt(0);
+                inputGuess = Character.toUpperCase(inputGuess);
+                if((inputGuess >= 65 && inputGuess <= 90) || (inputGuess >= 48 && inputGuess <= 57)) {
+                    if(gameChecker.hasAlreadyInputted(inputGuess)) {
+                        throw new InputMismatchException();
+                    }else{
+                        gameChecker.addInputRecords(inputGuess);
+                    }
+                    break;
+                }else {
+                    throw new Exception();
+                }
+            }catch(InputMismatchException e) {
+                inputGuess = 0;
+                System.out.println("Pagkakamali: Ang letra na iyan ay napili mo na\n");
+            }catch(Exception e) {
+                inputGuess = 0;
+                System.out.println("Pagkakamali: Hindi Wasto ang iyong Input\n");
+            }
+        }
+
+        gameChecker.getPlayer().setGuess(inputGuess);
     }
 
     public void showResults(){
