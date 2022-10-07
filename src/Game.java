@@ -1,5 +1,6 @@
 import categories.Words;
 import categories.WordsFactory;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
