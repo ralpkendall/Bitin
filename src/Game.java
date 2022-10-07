@@ -44,7 +44,6 @@ public class Game {
         while(true) {
             try {
                 System.out.print("Pili ka ng kategorya na huhulaan: ");
-//                playerCategory = scanner.nextInt();scanner.nextLine();
                 playerCategory = Integer.parseInt(String.valueOf(scanner.nextLine().charAt(0)));
                 if(playerCategory >= 1 && playerCategory <= wordsFactory.CATEGORY_LIST.length) {
                     break;
@@ -71,9 +70,31 @@ public class Game {
             gameChecker.printHangman();
             System.out.println("\nHinuhulaang Mga Kataga: ");
             System.out.println(gameChecker.getHiddenPhrase() + "\n");
-            System.out.print("Hula ka ng isang letra:");
-            char inputGuess = scanner.next().charAt(0);scanner.nextLine();
-            inputGuess = Character.toUpperCase(inputGuess);
+
+            char inputGuess;
+            while(true) {
+                try {
+                    System.out.print("Hula ka ng isang letra:");
+                    String inputGuessRaw = scanner.nextLine();
+                    if(inputGuessRaw.length() != 1){
+                        throw new Exception();
+                    }
+
+                    inputGuess = inputGuessRaw.charAt(0);
+                    inputGuess = Character.toUpperCase(inputGuess);
+                    if((inputGuess >= 65 && inputGuess <= 90) || (inputGuess >= 48 && inputGuess <= 57)) {
+                        break;
+                    }else {
+                        throw new Exception();
+                    }
+                }catch(Exception e) {
+                    inputGuess = 0;
+                    System.out.println("Pagkakamali: Hindi Wasto ang iyong Input\n");
+                }
+            }
+
+
+
             gameChecker.getPlayer().setGuess(inputGuess);
             gameChecker.processGuess();
             isGameOver = gameChecker.isGameOver();
