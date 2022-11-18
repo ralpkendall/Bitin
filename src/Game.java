@@ -11,11 +11,46 @@ public class Game {
     public Game() {
         scanner = new Scanner(System.in);
 
-        System.out.println("Maligayang Pagdating sa Bitin: A Hangman Word Game!\n");
+        System.out.println("Maligayang Pagdating sa Bitin: A Hangman Word Game!");
+        int gameMode = selectGameMode();
+        if(gameMode == 1) {
+           singlePlayerGame();
+        }else if(gameMode == 2){
+            twoPlayerGame();
+        }
+
+
+    }
+
+    public int selectGameMode() {
+        int gameModeSelected = 0;
+        while(gameModeSelected != 1 && gameModeSelected != 2) {
+            try{
+                System.out.println("[1] Single Player");
+                System.out.println("[2] Two Players");
+                System.out.print("Enter your choice: ");
+                gameModeSelected = Integer.parseInt(scanner.nextLine());
+
+                if (gameModeSelected != 1 && gameModeSelected != 2) {
+                    throw new Exception();
+                }
+            }catch (Exception e){
+                System.out.println("Invalid Input!");
+            }
+        }
+
+
+        return gameModeSelected;
+    }
+
+    public void singlePlayerGame() {
         Player player = createPlayer();
         Words words = selectPhraseCategory();
         gameChecker = new GameChecker(player, words);
         start();
+    }
+
+    public void twoPlayerGame() {
 
     }
 
